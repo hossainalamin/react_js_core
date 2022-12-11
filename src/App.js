@@ -1,68 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
-const style = {
-  backgroundColor : "cyan",
-  border : '2px'  
-}
-const personOne = {
-  name : "Al Amin",
-  job : "Programmer"
-}
 
-const personTwo = {
-  name : "Yeasin",
-  job : "Manager"
-}
-
-const personThree = {
-  name : "kanon",
-  job : "Rider"
-}
 function App() {
-  const productName = [
-    {"name" : "Photoshop","Price" : "600tk"},
-    {"name" : "Illastrator","Price" : "400tk"},
-    {"name" : "Pdfreader","Price" : "300tk"},
+  const friendName = [
+    {"name" : "Yeasin","class":"A","Years":"15"},
+    {"name" : "Rokib","class":"A","Years":"10"},
+    {"name" : "Kanon","class":"A","Years":"12"},
+    {"name" : "Sojib","class":"A","Years":"5"},
   ]
   return (
     <div className="App">
       <header className="App-header">
-        <Product productName={productName[0]} ></Product>
-        <Product productName={productName[1]} ></Product>
-        <Product productName={productName[2]} ></Product>
-        <Person name={personOne.name} role={personOne.job}></Person>
-        <Person name={personTwo.name} role={personTwo.job}></Person>
-        <Person name={personThree.name} role={personThree.job}></Person>
+        {
+          friendName.map(fname => <Friends name={fname.name} class={fname.class} years = {fname.Years}></Friends>)
+        }
       </header>
     </div>
   );
 }
-const styleOne = {
-  border : "2px solid red",
-  padding : "2px"
-}
-function Person(props){
-  return (
-    <div style={styleOne}>
-      <h1>Name : {props.name}</h1>
-      <p>Role : {props.role}</p>
-    </div>
-  )
-}
-function Product(props){
-  const productStyle = {
-    border : "1px solid red",
-    borderRadious : "5px",
-    backgroundColor : "gray",
-    height : "200px",
-    width : "200px"
+function Friends(probs)
+{
+  const Style = {
+    "height" : "300px",
+    "width" : "300px",
+    'backgroundColor' : 'red',
+    "border" : "2px solid blue",
+    "borderRadious" :"5px"
   }
-  return (
-    <div style={productStyle}>
-      <h3>{props.productName.name}</h3>
-      <h4>{props.productName.Price}</h4>
-      <button>Buy Now</button>
+  return(
+    <div style={Style}>
+      <h2>Name: {probs.name}</h2>
+      <h3>Class : {probs.class}</h3>
+      <h4>Years : {probs.years}</h4>
     </div>
   )
 }
+
+
+
 export default App;
