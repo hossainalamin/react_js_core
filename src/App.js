@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const friendName = [
@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <ValueChange></ValueChange>
+        <UserData></UserData>
         {
           friendName.map(fname => <Friends name={fname.name} class={fname.class} years = {fname.Years}></Friends>)
         }
@@ -50,5 +51,23 @@ function ValueChange()
     </div>
   )
 }
-
+function UserData()
+{
+  const[user, setUser] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUser(data))
+  },[])
+  return(
+    <div>
+    {
+      user.map(user => user.name)
+    }
+    {
+      user.map(user => <li>Email : {user.email}</li>)
+    }
+    </div>
+  )
+}
 export default App;
