@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   const friendName = [
@@ -11,9 +12,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <ValueChange></ValueChange>
         {
           friendName.map(fname => <Friends name={fname.name} class={fname.class} years = {fname.Years}></Friends>)
         }
+      
       </header>
     </div>
   );
@@ -36,6 +39,16 @@ function Friends(probs)
   )
 }
 
-
+function ValueChange()
+{
+  const[count, setCount] = useState(10)
+  return (
+    <div>
+      <h3>Count : {count}</h3>
+       <button onClick={() => setCount(count+1)}>Increase</button>
+        <button onClick={() => setCount(count-1)}>Decrease</button>
+    </div>
+  )
+}
 
 export default App;
